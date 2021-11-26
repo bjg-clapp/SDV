@@ -576,8 +576,7 @@ class BaseTabularModel:
             path (str):
                 Path where the SDV instance will be serialized.
         """
-        with open(path, 'wb') as output:
-            pickle.dump(self, output)
+        return self
 
     @classmethod
     def load(cls, path):
