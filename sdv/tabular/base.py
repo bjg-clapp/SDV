@@ -579,7 +579,7 @@ class BaseTabularModel:
         return self
 
     @classmethod
-    def load(cls, path):
+    def load(cls):#, path
         """Load a TabularModel instance from a given path.
 
         Args:
