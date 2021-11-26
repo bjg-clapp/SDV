@@ -569,7 +569,7 @@ class BaseTabularModel:
         if self._metadata.get_dtypes(ids=False):
             self._set_parameters(parameters)
 
-    def save(self, path):
+    def save(self):#, path
         """Save this model instance to the given path using pickle.
 
         Args:
@@ -579,7 +579,7 @@ class BaseTabularModel:
         return self
 
     @classmethod
-    def load(cls):#, path
+    def load(cls, path):
         """Load a TabularModel instance from a given path.
 
         Args:
