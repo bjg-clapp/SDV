@@ -171,7 +171,7 @@ class CTGAN(CTGANModel):
             is given, the maximum will be the maximum value seen in the fitted data. If ``None``
             is given, there won't be a maximum. Defaults to ``'auto'``.
     """
-
+    model_id = None
     _MODEL_CLASS = CTGANSynthesizer
 
     def __init__(self, field_names=None, field_types=None, field_transformers=None,
@@ -180,7 +180,7 @@ class CTGAN(CTGANModel):
                  generator_lr=2e-4, generator_decay=1e-6, discriminator_lr=2e-4,
                  discriminator_decay=1e-6, batch_size=500, discriminator_steps=1,
                  log_frequency=True, verbose=False, epochs=300, pac=10, cuda=True,
-                 rounding='auto', min_value='auto', max_value='auto'):
+                 rounding='auto', min_value='auto', max_value='auto', model_id = None):
         super().__init__(
             field_names=field_names,
             primary_key=primary_key,
@@ -194,6 +194,8 @@ class CTGAN(CTGANModel):
             min_value=min_value
         )
 
+        self.model_id = model_id
+        
         self._model_kwargs = {
             'embedding_dim': embedding_dim,
             'generator_dim': generator_dim,
@@ -208,7 +210,8 @@ class CTGAN(CTGANModel):
             'verbose': verbose,
             'epochs': epochs,
             'pac': pac,
-            'cuda': cuda
+            'cuda': cuda,
+            'model_id' : model_id
         }
 
 
@@ -285,14 +288,14 @@ class TVAE(CTGANModel):
             is given, the maximum will be the maximum value seen in the fitted data. If ``None``
             is given, there won't be a maximum. Defaults to ``'auto'``.
     """
-
+    model_id = None
     _MODEL_CLASS = TVAESynthesizer
 
     def __init__(self, field_names=None, field_types=None, field_transformers=None,
                  anonymize_fields=None, primary_key=None, constraints=None, table_metadata=None,
                  embedding_dim=128, compress_dims=(128, 128), decompress_dims=(128, 128),
                  l2scale=1e-5, batch_size=500, epochs=300, loss_factor=2, cuda=True,
-                 rounding='auto', min_value='auto', max_value='auto'):
+                 rounding='auto', min_value='auto', max_value='auto', model_id = None):
         super().__init__(
             field_names=field_names,
             primary_key=primary_key,
@@ -305,6 +308,8 @@ class TVAE(CTGANModel):
             max_value=max_value,
             min_value=min_value
         )
+        
+        self.model_id = model_id
 
         self._model_kwargs = {
             'embedding_dim': embedding_dim,
@@ -314,5 +319,6 @@ class TVAE(CTGANModel):
             'batch_size': batch_size,
             'epochs': epochs,
             'loss_factor': loss_factor,
-            'cuda': cuda
+            'cuda': cuda,
+            'model_id' : model_id
         }
