@@ -804,6 +804,7 @@ class Table:
             field_names=set(fields.keys()),
             field_types=fields,
             constraints=metadata_dict.get('constraints') or [],
+            field_transformers=metadata_dict.get('field_transformers') or {},
             model_kwargs=metadata_dict.get('model_kwargs') or {},
             primary_key=metadata_dict.get('primary_key'),
             sequence_index=metadata_dict.get('sequence_index'),
