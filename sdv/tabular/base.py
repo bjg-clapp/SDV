@@ -569,14 +569,14 @@ class BaseTabularModel:
         if self._metadata.get_dtypes(ids=False):
             self._set_parameters(parameters)
 
-    def save(self):#, path
+    def save(self, path):
         """Save this model instance to the given path using pickle.
-
         Args:
             path (str):
                 Path where the SDV instance will be serialized.
         """
-        return self
+        with open(path, 'wb') as output:
+            pickle.dump(self, output)
 
     @classmethod
     def load(cls, path):
